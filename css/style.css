@@ -710,7 +710,7 @@ input:focus, textarea:focus {
 }
 
 @media (max-width: 768px) {
-    .contact-info { display: none; }
+    .top-bar { display: none; }
     .nav-links {
         position: absolute;
         top: 100%;
