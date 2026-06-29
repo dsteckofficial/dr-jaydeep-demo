@@ -76,55 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
         appearOnScroll.observe(slider);
     });
 
-    // Animated Counters
-    const counters = document.querySelectorAll('.counter');
-    let hasCounted = false;
-
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !hasCounted) {
-                counters.forEach(counter => {
-                    const updateCount = () => {
-                        const target = +counter.getAttribute('data-target');
-                        const count = +counter.innerText;
-                        const isDecimal = counter.getAttribute('data-decimal') === 'true';
-                        
-                        const inc = target / 50; // Speed
-
-                        if (count < target) {
-                            if (isDecimal) {
-                                counter.innerText = (count + inc).toFixed(1);
-                            } else {
-                                counter.innerText = Math.ceil(count + inc);
-                            }
-                            setTimeout(updateCount, 40);
-                        } else {
-                            if (isDecimal) {
-                                counter.innerText = target.toFixed(1);
-                            } else {
-                                counter.innerText = target;
-                            }
-                        }
-                    };
-                    updateCount();
-                });
-                hasCounted = true;
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const statsSection = document.querySelector('.statistics');
-    if (statsSection) {
-        counterObserver.observe(statsSection);
-    }
+    // Animated Counters - Removed for Satva Clinic since stats are non-numeric text
 
     // Form Submission
     const bookingForm = document.getElementById('bookingForm');
     if (bookingForm) {
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Thank you for booking an appointment! Dr Jaydeep\'s clinic will contact you shortly to confirm.');
+            alert('Thank you for booking a consultation! Satva Clinic will contact you shortly to confirm.');
             bookingForm.reset();
         });
     }
